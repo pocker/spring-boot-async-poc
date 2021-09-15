@@ -16,9 +16,9 @@ public class AsyncWorker {
 
     /**
      * This method can't be called internally because the Spring creates a proxy for every managed
-     * beans and this proxy will make the call async!
+     * bean and this proxy will make the call async!
      *
-     * We can have multiple thread pool with different behaviours so its always a good thing to indicate which one we would use.
+     * We can have multiple thread pools with different behaviours so its always a good thing to indicate which one we would used.
      */
     @Async(AsyncConfig.ASYNC_WORKER_POOL_NAME)
     public CompletableFuture<Void> doAsyncWork(final Object input) {
@@ -26,8 +26,8 @@ public class AsyncWorker {
         try {
             Thread.sleep(this.getRandomSleepTime());
         } catch (InterruptedException e) {
-            /*When the JVM wants to stop the application the Thread.sleep will throw an InterruptedException.
-             * In this case we should stop whatever we doing. If we don't do it the app can not stop and the OS or the user eventually
+            /* When the JVM wants to stop the application the Thread.sleep will throw an InterruptedException.
+             * In this case we should stop whatever we are doing. If we don't do it the app can not stop and the OS or the user eventually
              * will kill it and it can cause data loss.
              * We can check time to time the state of the current thread with Thread.interrupted() and if its true we should save our work and exit.
              * Must to avoid:
