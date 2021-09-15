@@ -30,7 +30,7 @@ public class AsyncWorker {
              * In this case we should stop whatever we doing. If we don't do it the app can not stop and the OS or the user eventually
              * will kill it and it can cause data loss.
              * We can check time to time the state of the current thread with Thread.interrupted() and if its true we should save our work and exit.
-             * Must be avoid:
+             * Must to avoid:
              *
              * while(true){
              *  try {
